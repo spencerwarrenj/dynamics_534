@@ -1,6 +1,6 @@
 %HW 1
 %% problem 1
-clear
+clear; clc;
 %part a
 syms phi theta psi
 R = mrz(psi)*mrx(theta)*mrz(phi)
@@ -26,6 +26,7 @@ e_ca = [-50;0;40];
 e_bah = e_ba/norm(e_ba);
 e_cah = e_ca/norm(e_ca);
 k_hat = cross(e_bah,e_cah);
+k_hat = k_hat/norm(k_hat)
 i_hat = e_bah;
 j_hat = cross(k_hat,i_hat);
 R = [i_hat';j_hat';k_hat']
@@ -36,8 +37,17 @@ r_xyz = R*r_XYZ
 clear;
 syms theta
 R_rot = mry(theta)*mrz(40*pi/180)
-theta_r = double(solve(R_rot(1,1)==cos(49.36*pi/180),theta))
-theta_r*180/pi
+theta_r = double(solve(R_rot(1,1)==cos(43.96*pi/180),theta));
+R = mry(theta_r(1))*mrz(40*pi/180)
+
+%% problem 5
+clear;
+theta = atan2(3,2);
+r_ac_XYZ = [0;2;1];
+r_ac_new_xyz2 = mrz(theta)*r_ac_XYZ;
+R = (mry(45*pi/180)*mrz(theta));
+r_ac_new_XYZ = R'*r_ac_new_xyz2;
+r_oc_new_XYZ = r_ac_new_XYZ+[3;0;0]
 
 %% functions
 function R = mrz(theta)

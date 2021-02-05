@@ -1,0 +1,242 @@
+
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html><head>
+      <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+   <!--
+This HTML was auto-generated from MATLAB code.
+To make changes, update the MATLAB code and republish this document.
+      --><title>rotations</title><meta name="generator" content="MATLAB 9.6"><link rel="schema.DC" href="http://purl.org/dc/elements/1.1/"><meta name="DC.date" content="2021-01-27"><meta name="DC.source" content="rotations.m"><style type="text/css">
+html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,font,img,ins,kbd,q,s,samp,small,strike,strong,sub,sup,tt,var,b,u,i,center,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td{margin:0;padding:0;border:0;outline:0;font-size:100%;vertical-align:baseline;background:transparent}body{line-height:1}ol,ul{list-style:none}blockquote,q{quotes:none}blockquote:before,blockquote:after,q:before,q:after{content:'';content:none}:focus{outine:0}ins{text-decoration:none}del{text-decoration:line-through}table{border-collapse:collapse;border-spacing:0}
+
+html { min-height:100%; margin-bottom:1px; }
+html body { height:100%; margin:0px; font-family:Arial, Helvetica, sans-serif; font-size:10px; color:#000; line-height:140%; background:#fff none; overflow-y:scroll; }
+html body td { vertical-align:top; text-align:left; }
+
+h1 { padding:0px; margin:0px 0px 25px; font-family:Arial, Helvetica, sans-serif; font-size:1.5em; color:#d55000; line-height:100%; font-weight:normal; }
+h2 { padding:0px; margin:0px 0px 8px; font-family:Arial, Helvetica, sans-serif; font-size:1.2em; color:#000; font-weight:bold; line-height:140%; border-bottom:1px solid #d6d4d4; display:block; }
+h3 { padding:0px; margin:0px 0px 5px; font-family:Arial, Helvetica, sans-serif; font-size:1.1em; color:#000; font-weight:bold; line-height:140%; }
+
+a { color:#005fce; text-decoration:none; }
+a:hover { color:#005fce; text-decoration:underline; }
+a:visited { color:#004aa0; text-decoration:none; }
+
+p { padding:0px; margin:0px 0px 20px; }
+img { padding:0px; margin:0px 0px 20px; border:none; }
+p img, pre img, tt img, li img, h1 img, h2 img { margin-bottom:0px; } 
+
+ul { padding:0px; margin:0px 0px 20px 23px; list-style:square; }
+ul li { padding:0px; margin:0px 0px 7px 0px; }
+ul li ul { padding:5px 0px 0px; margin:0px 0px 7px 23px; }
+ul li ol li { list-style:decimal; }
+ol { padding:0px; margin:0px 0px 20px 0px; list-style:decimal; }
+ol li { padding:0px; margin:0px 0px 7px 23px; list-style-type:decimal; }
+ol li ol { padding:5px 0px 0px; margin:0px 0px 7px 0px; }
+ol li ol li { list-style-type:lower-alpha; }
+ol li ul { padding-top:7px; }
+ol li ul li { list-style:square; }
+
+.content { font-size:1.2em; line-height:140%; padding: 20px; }
+
+pre, code { font-size:12px; }
+tt { font-size: 1.2em; }
+pre { margin:0px 0px 20px; }
+pre.codeinput { padding:10px; border:1px solid #d3d3d3; background:#f7f7f7; }
+pre.codeoutput { padding:10px 11px; margin:0px 0px 20px; color:#4c4c4c; }
+pre.error { color:red; }
+
+@media print { pre.codeinput, pre.codeoutput { word-wrap:break-word; width:100%; } }
+
+span.keyword { color:#0000FF }
+span.comment { color:#228B22 }
+span.string { color:#A020F0 }
+span.untermstring { color:#B20000 }
+span.syscmd { color:#B28C00 }
+
+.footer { width:auto; padding:10px 0px; margin:25px 0px 0px; border-top:1px dotted #878787; font-size:0.8em; line-height:140%; font-style:italic; color:#878787; text-align:left; float:none; }
+.footer p { margin:0px; }
+.footer a { color:#878787; }
+.footer a:hover { color:#878787; text-decoration:underline; }
+.footer a:visited { color:#878787; }
+
+table th { padding:7px 5px; text-align:left; vertical-align:middle; border: 1px solid #d6d4d4; font-weight:bold; }
+table td { padding:7px 5px; text-align:left; vertical-align:top; border:1px solid #d6d4d4; }
+
+
+
+
+
+  </style></head><body><div class="content"><h2>Contents</h2><div><ul><li><a href="#2">problem 1</a></li><li><a href="#3">problem 2 (3.3 from book)</a></li><li><a href="#4">problem 3 (3.4 from book)</a></li><li><a href="#5">problem 4</a></li><li><a href="#6">problem 5</a></li><li><a href="#7">functions</a></li></ul></div><pre class="codeinput"><span class="comment">%HW 1</span>
+</pre><h2 id="2">problem 1</h2><pre class="codeinput">clear; clc;
+<span class="comment">%part a</span>
+syms <span class="string">phi</span> <span class="string">theta</span> <span class="string">psi</span>
+R = mrz(psi)*mrx(theta)*mrz(phi)
+<span class="comment">%part b</span>
+phi = 30*pi/180;
+theta = 45*pi/180;
+psi = -60*pi/180;
+R = double(simplify(subs(R)))
+<span class="comment">%part c</span>
+r_xyz = [-5;3;0];
+r_XYZ = R'*r_xyz
+</pre><h2 id="3">problem 2 (3.3 from book)</h2><pre class="codeinput">clear
+r_airplane = [0;.5;-2];
+R = mry(10*pi/180)*mrx(20*pi/180)*mrz(40*pi/180);
+r_earth = R*r_airplane
+</pre><pre class="codeoutput">
+r_earth =
+
+    0.6656
+   -0.3241
+   -1.9240
+
+</pre><h2 id="4">problem 3 (3.4 from book)</h2><pre class="codeinput">clear;
+e_ba = [-50;20;0];
+e_ca = [-50;0;40];
+e_bah = e_ba/norm(e_ba);
+e_cah = e_ca/norm(e_ca);
+k_hat = cross(e_bah,e_cah);
+i_hat = e_bah;
+j_hat = cross(k_hat,i_hat);
+R = [i_hat';j_hat';k_hat']
+r_XYZ = [-50;0;0];
+r_xyz = R*r_XYZ
+</pre><pre class="codeoutput">
+R =
+
+   -0.9285    0.3714         0
+   -0.1077   -0.2693    0.6247
+    0.2320    0.5800    0.2900
+
+
+r_xyz =
+
+   46.4238
+    5.3853
+  -11.6003
+
+</pre><h2 id="5">problem 4</h2><pre class="codeinput">clear;
+syms <span class="string">theta</span>
+R_rot = mry(theta)*mrz(40*pi/180);
+theta_r = double(solve(R_rot(1,1)==cos(49.36*pi/180),theta));
+R = mry(theta_r(1))*mrz(40*pi/180)
+</pre><pre class="codeoutput">
+R =
+
+    0.6513    0.5465   -0.5264
+   -0.6428    0.7660         0
+    0.4033    0.3384    0.8502
+
+</pre><h2 id="6">problem 5</h2><pre class="codeinput">clear;
+theta = atan2(2,3);
+r_ac_XYZ = [0;2;1];
+r_ac_new_xyz2 = mrz(theta)*r_ac_XYZ;
+R = (mry(45*pi/180)*mrz(theta));
+r_ac_new_XYZ = R'*r_ac_new_xyz2;
+r_oc_new_XYZ = r_ac_new_XYZ+[3;0;0]
+</pre><h2 id="7">functions</h2><pre class="codeinput"><span class="keyword">function</span> R = mrz(theta)
+    R = [cos(theta), sin(theta), 0;
+        -sin(theta), cos(theta), 0;
+        0, 0, 1];
+<span class="keyword">end</span>
+<span class="keyword">function</span> R = mrx(theta)
+    R = [1,0,0;
+        0,cos(theta), sin(theta);
+        0,-sin(theta),cos(theta)];
+<span class="keyword">end</span>
+<span class="keyword">function</span> R = mry(theta)
+    R = [cos(theta),0,-sin(theta);
+        0,1, 0;
+        sin(theta),0,cos(theta)];
+<span class="keyword">end</span>
+</pre><pre class="codeoutput"> 
+R =
+ 
+[   cos(phi)*cos(psi) - cos(theta)*sin(phi)*sin(psi), cos(psi)*sin(phi) + cos(phi)*cos(theta)*sin(psi), sin(psi)*sin(theta)]
+[ - cos(phi)*sin(psi) - cos(psi)*cos(theta)*sin(phi), cos(phi)*cos(psi)*cos(theta) - sin(phi)*sin(psi), cos(psi)*sin(theta)]
+[                                sin(phi)*sin(theta),                             -cos(phi)*sin(theta),          cos(theta)]
+ 
+
+R =
+
+    0.7392   -0.2803   -0.6124
+    0.5732    0.7392    0.3536
+    0.3536   -0.6124    0.7071
+
+
+r_XYZ =
+
+   -1.9763
+    3.6192
+    4.1225
+
+</pre><p class="footer"><br><a href="https://www.mathworks.com/products/matlab/">Published with MATLAB&reg; R2019a</a><br></p></div><!--
+##### SOURCE BEGIN #####
+%HW 1
+%% problem 1
+clear; clc;
+%part a
+syms phi theta psi
+R = mrz(psi)*mrx(theta)*mrz(phi)
+%part b
+phi = 30*pi/180;
+theta = 45*pi/180;
+psi = -60*pi/180;
+R = double(simplify(subs(R)))
+%part c
+r_xyz = [-5;3;0];
+r_XYZ = R'*r_xyz
+
+%% problem 2 (3.3 from book)
+clear
+r_airplane = [0;.5;-2];
+R = mry(10*pi/180)*mrx(20*pi/180)*mrz(40*pi/180);
+r_earth = R*r_airplane
+
+%% problem 3 (3.4 from book)
+clear;
+e_ba = [-50;20;0];
+e_ca = [-50;0;40];
+e_bah = e_ba/norm(e_ba);
+e_cah = e_ca/norm(e_ca);
+k_hat = cross(e_bah,e_cah);
+i_hat = e_bah;
+j_hat = cross(k_hat,i_hat);
+R = [i_hat';j_hat';k_hat']
+r_XYZ = [-50;0;0];
+r_xyz = R*r_XYZ
+
+%% problem 4
+clear;
+syms theta
+R_rot = mry(theta)*mrz(40*pi/180);
+theta_r = double(solve(R_rot(1,1)==cos(49.36*pi/180),theta));
+R = mry(theta_r(1))*mrz(40*pi/180)
+
+%% problem 5
+clear;
+theta = atan2(2,3);
+r_ac_XYZ = [0;2;1];
+r_ac_new_xyz2 = mrz(theta)*r_ac_XYZ;
+R = (mry(45*pi/180)*mrz(theta));
+r_ac_new_XYZ = R'*r_ac_new_xyz2;
+r_oc_new_XYZ = r_ac_new_XYZ+[3;0;0]
+
+%% functions
+function R = mrz(theta)
+    R = [cos(theta), sin(theta), 0;
+        -sin(theta), cos(theta), 0;
+        0, 0, 1];
+end
+function R = mrx(theta)
+    R = [1,0,0;
+        0,cos(theta), sin(theta);
+        0,-sin(theta),cos(theta)];
+end
+function R = mry(theta)
+    R = [cos(theta),0,-sin(theta);
+        0,1, 0;
+        sin(theta),0,cos(theta)];
+end
+##### SOURCE END #####
+--></body></html>
