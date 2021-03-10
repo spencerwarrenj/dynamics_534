@@ -1,0 +1,265 @@
+
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html><head>
+      <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+   <!--
+This HTML was auto-generated from MATLAB code.
+To make changes, update the MATLAB code and republish this document.
+      --><title>midterm</title><meta name="generator" content="MATLAB 9.6"><link rel="schema.DC" href="http://purl.org/dc/elements/1.1/"><meta name="DC.date" content="2021-02-26"><meta name="DC.source" content="midterm.m"><style type="text/css">
+html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,font,img,ins,kbd,q,s,samp,small,strike,strong,sub,sup,tt,var,b,u,i,center,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td{margin:0;padding:0;border:0;outline:0;font-size:100%;vertical-align:baseline;background:transparent}body{line-height:1}ol,ul{list-style:none}blockquote,q{quotes:none}blockquote:before,blockquote:after,q:before,q:after{content:'';content:none}:focus{outine:0}ins{text-decoration:none}del{text-decoration:line-through}table{border-collapse:collapse;border-spacing:0}
+
+html { min-height:100%; margin-bottom:1px; }
+html body { height:100%; margin:0px; font-family:Arial, Helvetica, sans-serif; font-size:10px; color:#000; line-height:140%; background:#fff none; overflow-y:scroll; }
+html body td { vertical-align:top; text-align:left; }
+
+h1 { padding:0px; margin:0px 0px 25px; font-family:Arial, Helvetica, sans-serif; font-size:1.5em; color:#d55000; line-height:100%; font-weight:normal; }
+h2 { padding:0px; margin:0px 0px 8px; font-family:Arial, Helvetica, sans-serif; font-size:1.2em; color:#000; font-weight:bold; line-height:140%; border-bottom:1px solid #d6d4d4; display:block; }
+h3 { padding:0px; margin:0px 0px 5px; font-family:Arial, Helvetica, sans-serif; font-size:1.1em; color:#000; font-weight:bold; line-height:140%; }
+
+a { color:#005fce; text-decoration:none; }
+a:hover { color:#005fce; text-decoration:underline; }
+a:visited { color:#004aa0; text-decoration:none; }
+
+p { padding:0px; margin:0px 0px 20px; }
+img { padding:0px; margin:0px 0px 20px; border:none; }
+p img, pre img, tt img, li img, h1 img, h2 img { margin-bottom:0px; } 
+
+ul { padding:0px; margin:0px 0px 20px 23px; list-style:square; }
+ul li { padding:0px; margin:0px 0px 7px 0px; }
+ul li ul { padding:5px 0px 0px; margin:0px 0px 7px 23px; }
+ul li ol li { list-style:decimal; }
+ol { padding:0px; margin:0px 0px 20px 0px; list-style:decimal; }
+ol li { padding:0px; margin:0px 0px 7px 23px; list-style-type:decimal; }
+ol li ol { padding:5px 0px 0px; margin:0px 0px 7px 0px; }
+ol li ol li { list-style-type:lower-alpha; }
+ol li ul { padding-top:7px; }
+ol li ul li { list-style:square; }
+
+.content { font-size:1.2em; line-height:140%; padding: 20px; }
+
+pre, code { font-size:12px; }
+tt { font-size: 1.2em; }
+pre { margin:0px 0px 20px; }
+pre.codeinput { padding:10px; border:1px solid #d3d3d3; background:#f7f7f7; }
+pre.codeoutput { padding:10px 11px; margin:0px 0px 20px; color:#4c4c4c; }
+pre.error { color:red; }
+
+@media print { pre.codeinput, pre.codeoutput { word-wrap:break-word; width:100%; } }
+
+span.keyword { color:#0000FF }
+span.comment { color:#228B22 }
+span.string { color:#A020F0 }
+span.untermstring { color:#B20000 }
+span.syscmd { color:#B28C00 }
+
+.footer { width:auto; padding:10px 0px; margin:25px 0px 0px; border-top:1px dotted #878787; font-size:0.8em; line-height:140%; font-style:italic; color:#878787; text-align:left; float:none; }
+.footer p { margin:0px; }
+.footer a { color:#878787; }
+.footer a:hover { color:#878787; text-decoration:underline; }
+.footer a:visited { color:#878787; }
+
+table th { padding:7px 5px; text-align:left; vertical-align:middle; border: 1px solid #d6d4d4; font-weight:bold; }
+table td { padding:7px 5px; text-align:left; vertical-align:top; border:1px solid #d6d4d4; }
+
+
+
+
+
+  </style></head><body><div class="content"><h2>Contents</h2><div><ul><li><a href="#2">Problem 1c and 1d</a></li><li><a href="#3">problem 3</a></li><li><a href="#4">function for midterm_1c</a></li></ul></div><pre class="codeinput"><span class="comment">%midterm.m</span>
+</pre><pre class="codeoutput error">Error using dbstatus
+Error: File: C:\Users\spenc\Downloads\dynamics_534\midterm.m Line: 99 Column: 1
+All functions in a script must be closed with an 'end'.
+</pre><h2 id="2">Problem 1c and 1d</h2><pre class="codeinput">clear; clc; close;
+<span class="keyword">global</span> mu g m k r0;
+mu = .12; <span class="comment">%friction coefficient</span>
+g = 9.81; <span class="comment">%Gravity acceleration (m/s^2)</span>
+m = 2; <span class="comment">%kg</span>
+k = 1000; <span class="comment">%N/m</span>
+r0 = .1; <span class="comment">%m</span>
+
+dt = 0.0001;		<span class="comment">% Step size (s)</span>
+tf = 1;			<span class="comment">% End time (s)</span>
+y0 = 1.5*r0;		<span class="comment">% Initial position (m)</span>
+v0 = 0;			<span class="comment">% Initial velocity (m/s)</span>
+
+<span class="comment">% Generate time vector</span>
+t = 0:dt:tf;
+N = length(t);
+
+<span class="comment">% Initial conditions</span>
+y0 = [y0 v0];
+
+<span class="comment">% Call 'ode45' to solve ODE.  'ode45' calls the function</span>
+<span class="comment">% 'bead_wire_function' repeatedly, which returns the two</span>
+<span class="comment">% derivatives at each time step.  'ode45' uses the returned</span>
+<span class="comment">% derivatives to calculate the solution at each time step.</span>
+<span class="comment">% The solution is returned in the variable y, which contains</span>
+<span class="comment">% both y1 (x) and y2 (v).</span>
+[t,y] = ode45(@mid_1_function,t, y0);
+
+<span class="comment">% Extract solution from y</span>
+r = y(:,1);		<span class="comment">% Position</span>
+r_dot = y(:,2);		<span class="comment">% Velocity</span>
+
+figure(1)
+subplot(2,1,1)
+plot(t,r)
+xlabel(<span class="string">'time (s)'</span>)
+ylabel(<span class="string">'r (m)'</span>)
+subplot(2,1,2)
+plot(t,r_dot)
+xlabel(<span class="string">'time (s)'</span>)
+ylabel(<span class="string">'rdot (m/s)'</span>)
+
+max(r)
+min(r)
+max(r_dot)
+min(r_dot)
+</pre><h2 id="3">problem 3</h2><pre class="codeinput">clear; clc; close;
+theta = 30*pi/180; <span class="comment">%rad</span>
+L = .03; <span class="comment">%m</span>
+R = .01; <span class="comment">%m</span>
+w1 = 12; <span class="comment">%rad/s</span>
+theta_dot = -7; <span class="comment">%rad/s</span>
+theta_ddot = 30; <span class="comment">%rad/s^2</span>
+m = .05; <span class="comment">%kg</span>
+ax = R*theta_ddot*cos(theta)-R*theta_dot^2*sin(theta) <span class="keyword">...</span>
+    +2*R*theta_dot*sin(theta)*w1-R*sin(theta)*w1^2;
+ay = -R*theta_ddot*sin(theta)-R*theta_dot^2*cos(theta) <span class="keyword">...</span>
+    +2*R*theta_dot*cos(theta)*w1-(L+R*cos(theta))*w1^2;
+F = m.*[ax;ay;0];
+mag_F = m*sqrt((ax)^2+(ay^2))
+</pre><h2 id="4">function for midterm_1c</h2><pre class="codeinput"><span class="comment">% mid_1_function</span>
+<span class="comment">% This is the function that 'ode45' calls to get the function derivatives</span>
+<span class="comment">% at each time step.  'ode45' passes the current time and states (x and v,</span>
+<span class="comment">% which are contained in y), and the function returns the current state</span>
+<span class="comment">% derivatives (xdot and vdot, which are contained in ydot).</span>
+<span class="comment">%</span>
+<span class="comment">% OG Author:   Mark Colton</span>
+<span class="comment">% Edits: Spencer Jensen</span>
+<span class="comment">% Date:     2/25/21</span>
+
+<span class="keyword">function</span> ydot = mid_1_function(t,y)
+
+<span class="comment">% Access the global variables (model parameters) defined in the main</span>
+<span class="comment">% function</span>
+<span class="keyword">global</span> mu g m k r0;
+
+<span class="comment">% Extract the current states from the current y vector</span>
+y1 = y(1);
+y2 = y(2);
+theta_dot = 1.2*6.5*cos(6.5*t);
+theta_ddot = -1.2*6.5*6.5*sin(6.5*t);
+
+<span class="comment">% Find the state derivatives</span>
+y1dot = y2;
+y2dot = theta_dot^2*y1-k/m*(y1-r0)- <span class="keyword">...</span>
+    mu*sqrt((theta_ddot*y1+2*theta_dot*y2)^2+g^2)*sign(y2);
+
+<span class="comment">% Reassemble the state derivatives into a single vector, ydot, to pass</span>
+<span class="comment">% back to 'ode45'</span>
+ydot = [y1dot; y2dot];
+</pre><p class="footer"><br><a href="https://www.mathworks.com/products/matlab/">Published with MATLAB&reg; R2019a</a><br></p></div><!--
+##### SOURCE BEGIN #####
+%midterm.m
+%% Problem 1c and 1d
+clear; clc; close;
+global mu g m k r0;
+mu = .12; %friction coefficient
+g = 9.81; %Gravity acceleration (m/s^2)
+m = 2; %kg
+k = 1000; %N/m
+r0 = .1; %m
+
+dt = 0.0001;		% Step size (s)
+tf = 1;			% End time (s)
+y0 = 1.5*r0;		% Initial position (m)
+v0 = 0;			% Initial velocity (m/s)
+
+% Generate time vector
+t = 0:dt:tf;
+N = length(t);
+
+% Initial conditions
+y0 = [y0 v0];
+
+% Call 'ode45' to solve ODE.  'ode45' calls the function
+% 'bead_wire_function' repeatedly, which returns the two 
+% derivatives at each time step.  'ode45' uses the returned
+% derivatives to calculate the solution at each time step.
+% The solution is returned in the variable y, which contains
+% both y1 (x) and y2 (v).
+[t,y] = ode45(@mid_1_function,t, y0);
+
+% Extract solution from y
+r = y(:,1);		% Position
+r_dot = y(:,2);		% Velocity
+
+figure(1)
+subplot(2,1,1)
+plot(t,r)
+xlabel('time (s)')
+ylabel('r (m)')
+subplot(2,1,2)
+plot(t,r_dot)
+xlabel('time (s)')
+ylabel('rdot (m/s)')
+
+max(r)
+min(r)
+max(r_dot)
+min(r_dot)
+
+%% problem 3
+clear; clc; close;
+theta = 30*pi/180; %rad
+L = .03; %m
+R = .01; %m
+w1 = 12; %rad/s
+theta_dot = -7; %rad/s
+theta_ddot = 30; %rad/s^2
+m = .05; %kg
+ax = R*theta_ddot*cos(theta)-R*theta_dot^2*sin(theta) ...
+    +2*R*theta_dot*sin(theta)*w1-R*sin(theta)*w1^2;
+ay = -R*theta_ddot*sin(theta)-R*theta_dot^2*cos(theta) ...
+    +2*R*theta_dot*cos(theta)*w1-(L+R*cos(theta))*w1^2;
+F = m.*[ax;ay;0];
+mag_F = m*sqrt((ax)^2+(ay^2))
+
+
+%% function for midterm_1c
+
+% mid_1_function
+% This is the function that 'ode45' calls to get the function derivatives
+% at each time step.  'ode45' passes the current time and states (x and v,
+% which are contained in y), and the function returns the current state
+% derivatives (xdot and vdot, which are contained in ydot).
+%
+% OG Author:   Mark Colton
+% Edits: Spencer Jensen
+% Date:     2/25/21
+
+function ydot = mid_1_function(t,y)
+
+% Access the global variables (model parameters) defined in the main
+% function
+global mu g m k r0;
+
+% Extract the current states from the current y vector
+y1 = y(1);
+y2 = y(2);
+theta_dot = 1.2*6.5*cos(6.5*t);
+theta_ddot = -1.2*6.5*6.5*sin(6.5*t);
+
+% Find the state derivatives
+y1dot = y2;
+y2dot = theta_dot^2*y1-k/m*(y1-r0)- ...
+    mu*sqrt((theta_ddot*y1+2*theta_dot*y2)^2+g^2)*sign(y2);
+
+% Reassemble the state derivatives into a single vector, ydot, to pass
+% back to 'ode45'
+ydot = [y1dot; y2dot];
+
+##### SOURCE END #####
+--></body></html>
